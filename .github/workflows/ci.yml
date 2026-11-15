@@ -1,0 +1,181 @@
+name: CI
+
+# build: the checks that need no Tarantool, and the cross-builds.
+# integration: the unit tests and the luatest suite on each platform, against
+# Tarantool 3.5 (the supported floor) to 3.9 on Linux x86_64, the floor and the
+# latest on Linux arm64, and the current Homebrew Tarantool on macOS.
+# doc-examples: the examples of doc/, built and run, their results checked.
+# coverage: line coverage of src/ under kcov.
+#
+# Weekly, the whole matrix runs again: setup-tarantool installs the latest
+# patch release of each series, so a new release is tested within a week.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ZIG_VERSION: 0.17.1
+
+jobs:
+  build:
+    name: build & unit tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # v2.2.1
+        with:
+          version: ${{ env.ZIG_VERSION }}
+
+      - name: Formatting
+        run: zig fmt --check src test examples build.zig
+
+      - name: Unit tests
+        run: zig build test --summary all
+
+      - name: Module purity (negative compile gate)
+        run: zig build purity
+
+      - name: Downstream consumer build
+        run: zig build consumer
+
+      - name: Cross-build
+        run: |
+          for target in aarch64-linux aarch64-macos x86_64-macos; do
+            echo "::group::$target"
+            zig build modules -Dtarget=$target
+            echo "::endgroup::"
+          done
+
+      # The suite runs debug builds; a release build compiles code paths that
+      # the safety checks of debug elide, and catches what only it rejects.
+      - name: Release build
+        run: zig build modules -Doptimize=ReleaseFast
+
+  integration:
+    name: integration (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: 'linux x86_64, Tarantool 3.5', os: ubuntu-24.04, tarantool: '3.5' }
+          - { name: 'linux x86_64, Tarantool 3.6', os: ubuntu-24.04, tarantool: '3.6' }
+          - { name: 'linux x86_64, Tarantool 3.7', os: ubuntu-24.04, tarantool: '3.7' }
+          - { name: 'linux x86_64, Tarantool 3.8', os: ubuntu-24.04, tarantool: '3.8' }
+          - { name: 'linux x86_64, Tarantool 3.9', os: ubuntu-24.04, tarantool: '3.9' }
+          - { name: 'linux arm64, Tarantool 3.5', os: ubuntu-24.04-arm, tarantool: '3.5' }
+          - { name: 'linux arm64, Tarantool 3.9', os: ubuntu-24.04-arm, tarantool: '3.9' }
+          - { name: 'macOS arm64, Homebrew Tarantool', os: macos-15, tarantool: brew }
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # v2.2.1
+        with:
+          version: ${{ env.ZIG_VERSION }}
+
+      - uses: ./.github/actions/tarantool
+        with:
+          version: ${{ matrix.tarantool }}
+
+      - name: Unit tests
+        run: zig build test --summary all
+
+      # luatest, into ./.rocks: tt clones it and cmake-builds its `checks`
+      # dependency, with the git, cmake and compiler of the runner image.
+      - name: Install luatest
+        id: deps
+        run: ./deps.sh
+
+      # Against the module.h that the Tarantool package installed:
+      # /usr/include/tarantool on Linux, /opt/homebrew/include/tarantool on macOS.
+      - name: C ABI parity against module.h
+        run: zig build verify-cabi -Dverify-cabi=true
+
+      - name: Integration tests
+        # Run even if verify-cabi failed, so both results are reported.
+        if: ${{ !cancelled() && steps.deps.outcome == 'success' }}
+        run: zig build integration --summary all
+
+      - name: Upload luatest artifacts
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: luatest-artifacts-${{ matrix.os }}-${{ matrix.tarantool }}
+          path: /tmp/t/artifacts
+          if-no-files-found: ignore
+
+  doc-examples:
+    name: doc examples (Tarantool ${{ matrix.tarantool }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        tarantool: ['3.5', '3.9']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # v2.2.1
+        with:
+          version: ${{ env.ZIG_VERSION }}
+
+      - uses: ./.github/actions/tarantool
+        with:
+          version: ${{ matrix.tarantool }}
+
+      - name: Build and run the examples of doc/
+        run: python3 ci/doc_examples.py
+
+  # Line coverage of src/ (unit tests + every luatest-spawned server + client
+  # programs) under kcov. Summary goes to the job page, HTML to an artifact.
+  # On Ubuntu 22.04: 24.04 has no kcov package.
+  coverage:
+    name: coverage (Tarantool 3.9)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # v2.2.1
+        with:
+          version: ${{ env.ZIG_VERSION }}
+
+      - uses: ./.github/actions/tarantool
+        with:
+          version: '3.9'
+
+      - name: Install kcov
+        run: sudo apt-get install -y --no-install-recommends kcov
+
+      - name: Install luatest
+        run: ./deps.sh
+
+      - name: Coverage run
+        run: ci/coverage.sh coverage
+
+      - name: Coverage summary
+        if: ${{ !cancelled() }}
+        run: cat coverage/summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: coverage-report
+          path: coverage/merged
+          if-no-files-found: ignore

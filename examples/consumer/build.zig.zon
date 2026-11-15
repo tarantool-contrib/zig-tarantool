@@ -1,0 +1,14 @@
+.{
+    .name = .tarantool_consumer,
+    .version = "0.0.0",
+    .fingerprint = 0x2533c714fcbc8613,
+    .minimum_zig_version = "0.17.1",
+    .dependencies = .{
+        .tarantool = .{ .path = "../.." },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

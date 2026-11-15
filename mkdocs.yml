@@ -1,0 +1,161 @@
+# The documentation of zig-tarantool. The pages are plain Markdown with few
+# extensions, so they read the same on GitHub and on the site.
+#
+# Preview with `ci/docs.py serve`, check with `ci/docs.py build` (the CI does);
+# `ci/docs.py deploy <ref>` publishes a version to the gh-pages branch. The
+# tools are pinned in doc/requirements.txt.
+#
+# A page added to doc/ needs its entry in the nav below: the strict build fails
+# on a page the nav omits. A translation, doc/<page>.ru.md, needs no entry: the
+# i18n plugin pairs it with doc/<page>.md.
+#
+# The published site has one tree per language and version, /<lang>/<version>/,
+# each a separate build of this file: ci/docs.py sets DOCS_LANG (the language
+# to build), DOCS_VERSION and DOCS_SITE_URL. Unset, as in `mkdocs serve`, they
+# give one site with both languages, English at the root.
+
+site_name: zig-tarantool
+site_description: Tarantool stored procedures, Lua modules and network clients in Zig
+# The URL of the site root; a published build sets that of /<lang>/<version>/.
+site_url: !ENV [DOCS_SITE_URL, 'https://tarantool-contrib.github.io/zig-tarantool/']
+repo_url: https://github.com/tarantool-contrib/zig-tarantool
+repo_name: tarantool-contrib/zig-tarantool
+edit_uri: edit/master/doc/
+
+docs_dir: doc
+exclude_docs: |
+  requirements.txt
+  overrides/
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+nav:
+  - Home: index.md
+  - Get started:
+      - get-started/install.md
+      - get-started/first-module.md
+      - get-started/first-client.md
+      - get-started/first-modules-with-tt.md
+  - Concepts:
+      - concepts/layers.md
+      - concepts/encoding.md
+      - concepts/lifetimes.md
+      - concepts/fibers.md
+  - How-to:
+      - how-to/stored-procedures.md
+      - how-to/spaces-and-indexes.md
+      - how-to/transactions.md
+      - how-to/fibers.md
+      - how-to/lua-modules.md
+      - how-to/network-client.md
+      - how-to/client-in-a-procedure.md
+      - how-to/triggers.md
+      - how-to/logging.md
+      - how-to/decimals-and-extensions.md
+      - how-to/introspection.md
+      - how-to/using-with-tt.md
+  - Reference:
+      - reference/build.md
+      - reference/api.md
+      - API (generated): api/index.html
+      - reference/errors.md
+  - Project:
+      - project/testing.md
+      - project/known-issues.md
+
+theme:
+  name: material
+  # partials/alternate.html: the language switcher of a published build.
+  custom_dir: doc/overrides
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - content.action.edit
+    - content.code.copy
+    - navigation.footer
+    - navigation.sections
+    - search.highlight
+    - toc.follow
+
+extra:
+  generator: false
+  # The version selector: versions.json next to the version directories, as
+  # mike writes it (/<lang>/versions.json).
+  version:
+    provider: mike
+  # Set by ci/docs.py for a published build: the version being built, and the
+  # path of the site root, for the language switcher to link the same page in
+  # /<other lang>/<version>/. Empty in a local build.
+  docs_version: !ENV [DOCS_VERSION, '']
+  docs_root: !ENV [DOCS_ROOT_PATH, '/']
+  # The languages of the switcher of a published build; a local build with
+  # both languages gets its switcher from the i18n plugin instead.
+  alternate:
+    - name: English
+      lang: en
+      link: /en/
+    - name: Русский
+      lang: ru
+      link: /ru/
+
+plugins:
+  - search
+  # Russian next to English: page.ru.md translates page.md and is served
+  # under /ru/; a page with no translation falls back to the English one.
+  # Material gets the language switcher and search gets both languages.
+  # Translations that lag behind their English pages: ci/doc_translations.py.
+  - i18n:
+      # One language per published build (see the top of this file).
+      build_only_locale: !ENV [DOCS_LANG, null]
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          name: English
+          default: true
+        - locale: ru
+          name: Русский
+          site_description: Хранимые процедуры, Lua-модули и сетевые клиенты Tarantool на Zig
+          # The titles the nav sets explicitly; the others come from the
+          # first heading of a page.
+          nav_translations:
+            Home: Главная
+            Get started: Начало работы
+            Concepts: Концепции
+            How-to: Руководства
+            Reference: Справочник
+            Project: О проекте
+            API (generated): API (из исходников)
+
+markdown_extensions:
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+      # GitHub's anchors, so that a link works both on GitHub and on the site.
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.highlight
+  - pymdownx.superfences

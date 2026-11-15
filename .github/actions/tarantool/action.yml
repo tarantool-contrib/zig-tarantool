@@ -1,0 +1,52 @@
+name: Install Tarantool and tt
+description: >-
+  Tarantool with its module headers, and tt (which installs luatest). On Linux,
+  a release series from download.tarantool.org through tarantool/setup-tarantool;
+  on macOS, the current Homebrew formula.
+
+inputs:
+  version:
+    description: Tarantool series or version on Linux, such as '3.9'; ignored on macOS
+    required: true
+  tt-version:
+    description: tt release to install on Linux
+    default: '2.15.2'
+
+runs:
+  using: composite
+  steps:
+    - if: runner.os == 'Linux'
+      uses: tarantool/setup-tarantool@6544c70014ba3d74b469acc744e578e2430a15be # v4.0.1
+      with:
+        tarantool-version: ${{ inputs.version }}
+
+    - if: runner.os == 'Linux'
+      name: Install tt
+      shell: bash
+      env:
+        TT_VERSION: ${{ inputs.tt-version }}
+      run: |
+        set -euo pipefail
+        case "$(uname -m)" in
+          x86_64) arch=amd64 ;;
+          aarch64) arch=arm64 ;;
+          *) echo "no tt for $(uname -m)" >&2; exit 1 ;;
+        esac
+        url=https://github.com/tarantool/tt/releases/download/v$TT_VERSION
+        name=tt-$TT_VERSION-linux-$arch.tar.gz
+        cd "$RUNNER_TEMP"
+        curl -fsSLO "$url/$name"
+        curl -fsSL "$url/checksums.txt" | grep " $name\$" | sha256sum -c -
+        tar xzf "$name" tt
+        sudo install -m 0755 tt /usr/local/bin/tt
+
+    - if: runner.os == 'macOS'
+      name: Install from Homebrew
+      shell: bash
+      run: brew install tarantool tt
+
+    - name: Versions
+      shell: bash
+      run: |
+        tarantool --version | head -1
+        tt version

@@ -1,0 +1,12 @@
+zig-out/
+.zig-cache/
+.rocks/
+# mkdocs build output (doc/ is the source), and the API reference that
+# ci/docs.sh generates into doc/api/.
+site/
+/doc/api/
+
+# Vendored Tarantool lua headers — override the global `vendor` ignore so the
+# verify-cabi parity check is self-contained on a fresh clone.
+!vendor/
+
