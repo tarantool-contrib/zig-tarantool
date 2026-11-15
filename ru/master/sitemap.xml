@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/encoding/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/encoding/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/fibers/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/fibers/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/layers/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/layers/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/lifetimes/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/concepts/lifetimes/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/first-client/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/first-client/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/first-module/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/first-module/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/install/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/install/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/client-in-a-procedure/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/client-in-a-procedure/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/decimals-and-extensions/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/decimals-and-extensions/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/fibers/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/fibers/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/introspection/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/introspection/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/logging/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/logging/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/lua-modules/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/lua-modules/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/network-client/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/network-client/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/spaces-and-indexes/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/spaces-and-indexes/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/stored-procedures/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/stored-procedures/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/transactions/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/transactions/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/triggers/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/triggers/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/project/known-issues/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/project/known-issues/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/project/testing/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/project/testing/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/reference/api/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/reference/api/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/reference/build/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/reference/build/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/reference/errors/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/reference/errors/"/>
+    </url>
+</urlset>

@@ -1,0 +1,1923 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Хранимые процедуры, Lua-модули и сетевые клиенты Tarantool на Zig">
+      
+      
+      
+        <link rel="canonical" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/reference/api/">
+      
+      
+        <link rel="prev" href="../build/">
+      
+      
+        <link rel="next" href="../../api/">
+      
+      
+        
+          <link rel="alternate" href="/en/" hreflang="en">
+        
+          <link rel="alternate" href="/ru/" hreflang="ru">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>API by module - zig-tarantool</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-by-module" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="zig-tarantool" class="md-header__button md-logo" aria-label="zig-tarantool" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            zig-tarantool
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API by module
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Выберите язык">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            
+              
+            
+            <a href="/zig-tarantool/en/master/reference/api/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            
+              
+            
+            <a href="/zig-tarantool/ru/master/reference/api/" hreflang="ru" class="md-select__link">
+              Русский
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tarantool-contrib/zig-tarantool" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tarantool-contrib/zig-tarantool
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="zig-tarantool" class="md-nav__button md-logo" aria-label="zig-tarantool" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    zig-tarantool
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tarantool-contrib/zig-tarantool" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tarantool-contrib/zig-tarantool
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Начало работы
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Начало работы
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/first-module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/first-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Концепции
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Концепции
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/layers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules and layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/lifetimes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifetimes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/fibers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fibers and yields
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Руководства
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Руководства
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/stored-procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stored procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/spaces-and-indexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spaces and indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/transactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/fibers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fibers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/lua-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/network-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/client-in-a-procedure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The client in a stored procedure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/triggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Triggers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/decimals-and-extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decimals and extensions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/introspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introspection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Справочник
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Справочник
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API by module
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API by module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tarantool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tarantool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarantool-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tarantool-client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarantool-proto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tarantool-proto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#msgpack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        msgpack
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API (из исходников)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    О проекте
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    О проекте
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/known-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tarantool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tarantool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarantool-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tarantool-client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarantool-proto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tarantool-proto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#msgpack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        msgpack
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/tarantool-contrib/zig-tarantool/edit/master/doc/reference/api.md" title="Редактировать страницу" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="api-by-module">API by module<a class="headerlink" href="#api-by-module" title="Permanent link">&para;</a></h1>
+<p>This page lists the public declarations of the package, by module, with a line
+on each and a link to the page that shows it in use. The
+<a href="../../api/">generated API reference</a> has every declaration with its
+doc comment, its signature and its source: for example
+<a href="../../api/#tarantool.box.Space"><code>tarantool.box.Space</code></a>,
+<a href="../../api/#tarantool-client.Connection"><code>tarantool-client.Connection</code></a>,
+<a href="../../api/#msgpack.encode"><code>msgpack.encode</code></a>.</p>
+<h2 id="tarantool">tarantool<a class="headerlink" href="#tarantool" title="Permanent link">&para;</a></h2>
+<p><code>@import("tarantool")</code>, in a module only.</p>
+<table>
+<thead>
+<tr>
+<th>Declaration</th>
+<th>Is</th>
+<th>See</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proc.exportProc(name, f)</code></td>
+<td>exports a plain Zig function as a stored procedure</td>
+<td><a href="../../how-to/stored-procedures/">Stored procedures</a></td>
+</tr>
+<tr>
+<td><code>proc.exportRaw(name, f)</code></td>
+<td>exports <code>fn(ctx, args, args_end) !c_int</code> as a stored procedure</td>
+<td><a href="../../how-to/stored-procedures/#raw-procedures">Stored procedures</a></td>
+</tr>
+<tr>
+<td><code>proc.returnValue(ctx, value)</code>, <code>proc.returnTuple(ctx, tuple)</code></td>
+<td>add a result to a call</td>
+<td></td>
+</tr>
+<tr>
+<td><code>proc.fail(err, message)</code></td>
+<td>fails a raw procedure</td>
+<td></td>
+</tr>
+<tr>
+<td><code>proc.RawProc</code></td>
+<td>the C type of a stored procedure</td>
+<td></td>
+</tr>
+<tr>
+<td><code>box.Space</code></td>
+<td>a space: <code>byName</code>, <code>insert</code>, <code>replace</code>, <code>get</code>, <code>delete</code>, <code>update</code>, <code>upsert</code>, <code>truncate</code>, the <code>*Discard</code> variants, <code>primary</code>, <code>index</code>, <code>indexById</code></td>
+<td><a href="../../how-to/spaces-and-indexes/#spaces">Spaces and indexes</a></td>
+</tr>
+<tr>
+<td><code>box.Index</code></td>
+<td>an index: <code>get</code>, <code>min</code>, <code>max</code>, <code>count</code>, <code>len</code>, <code>bsize</code>, <code>random</code>, <code>select</code>, <code>iterator</code>, <code>cursor</code>, <code>range</code>, <code>top</code>, <code>update</code>, <code>extractKey</code></td>
+<td><a href="../../how-to/spaces-and-indexes/#indexes">Spaces and indexes</a></td>
+</tr>
+<tr>
+<td><code>box.Iterator</code>, <code>box.Cursor</code>, <code>box.Range(Row)</code></td>
+<td>walks over an index: owning, borrowing, typed</td>
+<td></td>
+</tr>
+<tr>
+<td><code>box.Typed(Row)</code></td>
+<td>a space as rows of a named struct: <code>put</code>, <code>insert</code>, <code>get</code>, <code>del</code>, <code>free</code></td>
+<td><a href="../../how-to/spaces-and-indexes/#typed-rows">Spaces and indexes</a></td>
+</tr>
+<tr>
+<td><code>box.info</code></td>
+<td>the state of the instance: <code>status</code>, <code>isRo</code>, <code>waitRo</code>, <code>roReason</code>, <code>schemaVersion</code>, <code>lsn</code>, <code>slab</code></td>
+<td><a href="../../how-to/introspection/">Introspection</a></td>
+</tr>
+<tr>
+<td><code>box.Tuple</code>, <code>tuple.Tuple</code></td>
+<td>a tuple: <code>get</code>, <code>field</code>, <code>decode</code>, <code>decodeRow</code>, <code>fieldCount</code>, <code>bsize</code>, <code>fieldIterator</code>, <code>new</code>, <code>update</code>, <code>deinit</code></td>
+<td><a href="../../how-to/spaces-and-indexes/#reading-a-tuple">Spaces and indexes</a></td>
+</tr>
+<tr>
+<td><code>txn.transaction(f, args)</code>, <code>txn.transactionWith(options, f, args)</code></td>
+<td>runs <code>f</code> in a transaction</td>
+<td><a href="../../how-to/transactions/">Transactions</a></td>
+</tr>
+<tr>
+<td><code>txn.Savepoint</code></td>
+<td>a savepoint: <code>save</code>, <code>rollback</code></td>
+<td><a href="../../how-to/transactions/#savepoints">Transactions</a></td>
+</tr>
+<tr>
+<td><code>txn.active</code>, <code>id</code>, <code>isolation</code>, <code>setIsolation</code>, <code>setTimeout</code>, <code>makeSync</code>, <code>alloc</code>, <code>allocSlice</code></td>
+<td>the active transaction</td>
+<td></td>
+</tr>
+<tr>
+<td><code>seq.Sequence</code></td>
+<td>a sequence: <code>byName</code>, <code>byId</code>, <code>next</code>, <code>current</code>, <code>set</code>, <code>reset</code></td>
+<td><a href="../../how-to/spaces-and-indexes/#sequences">Spaces and indexes</a></td>
+</tr>
+<tr>
+<td><code>keydef.KeyDef</code></td>
+<td>a key definition: <code>init</code>, <code>compare</code>, <code>compareWithKey</code>, <code>extractKey</code></td>
+<td><a href="../../how-to/spaces-and-indexes/#key-definitions">Spaces and indexes</a></td>
+</tr>
+<tr>
+<td><code>fiber.spawn</code>, <code>spawnWithAttr</code>, <code>spawnDetached</code></td>
+<td>start a fiber</td>
+<td><a href="../../how-to/fibers/">Fibers</a></td>
+</tr>
+<tr>
+<td><code>fiber.Fiber(R)</code></td>
+<td>a fiber to join: <code>join</code>, <code>cancel</code>, <code>wakeup</code>, <code>id</code>, <code>name</code>, <code>setName</code>, <code>csw</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fiber.FiberAttr</code>, <code>fiber.find</code>, <code>fiber.FiberInfo</code></td>
+<td>stack size; look up a fiber</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fiber.sleep</code>, <code>yield</code>, <code>reschedule</code>, <code>isCancelled</code>, <code>time</code>, <code>clock</code>, ...</td>
+<td>the current fiber</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fiber.Channel(T)</code></td>
+<td>a bounded channel: <code>send</code>, <code>recv</code>, <code>close</code></td>
+<td><a href="../../how-to/fibers/#channels">Fibers</a></td>
+</tr>
+<tr>
+<td><code>cond.Cond</code></td>
+<td>a condition variable: <code>wait</code>, <code>waitTimeout</code>, <code>waitUntil</code>, <code>signal</code>, <code>broadcast</code></td>
+<td><a href="../../how-to/fibers/#condition-variables-and-latches">Fibers</a></td>
+</tr>
+<tr>
+<td><code>latch.Latch</code></td>
+<td>a mutex for fibers: <code>lock</code>, <code>tryLock</code>, <code>unlock</code>, <code>withLock</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>coio.wait</code>, <code>coio.close</code></td>
+<td>wait until a file descriptor is ready</td>
+<td><a href="../../how-to/fibers/#worker-threads">Fibers</a></td>
+</tr>
+<tr>
+<td><code>coio.call</code>, <code>coio.getAddrInfo</code></td>
+<td>run a function, or resolve a name, on a worker thread</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fiberio.io()</code></td>
+<td>a <code>std.Io</code> whose network I/O yields the fiber</td>
+<td><a href="../../how-to/client-in-a-procedure/">The client in a stored procedure</a></td>
+</tr>
+<tr>
+<td><code>lua.exportModule(name, defs)</code></td>
+<td>exports <code>luaopen_&lt;name&gt;</code> for <code>require</code></td>
+<td><a href="../../how-to/lua-modules/">Lua modules</a></td>
+</tr>
+<tr>
+<td><code>lua.Lua</code>, <code>lua.Multi</code>, <code>lua.multi</code>, <code>lua.raiseErr</code></td>
+<td>the Lua stack, several results, errors</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trigger.onReplace</code>, <code>trigger.SpaceTrigger</code></td>
+<td>a trigger on the writes to a space</td>
+<td><a href="../../how-to/triggers/">Triggers</a></td>
+</tr>
+<tr>
+<td><code>trigger.onCommit</code>, <code>onRollback</code>, <code>onShutdown</code>, <code>removeShutdown</code></td>
+<td>triggers on a transaction and on the shutdown</td>
+<td></td>
+</tr>
+<tr>
+<td><code>say.err</code>, <code>crit</code>, <code>warn</code>, <code>info</code>, <code>verbose</code>, <code>debug</code>, <code>sysError</code>, <code>enabled</code>, <code>stdLogFn</code></td>
+<td>the log</td>
+<td><a href="../../how-to/logging/">Logging</a></td>
+</tr>
+<tr>
+<td><code>decimal.Decimal</code></td>
+<td>a decimal and its arithmetic</td>
+<td><a href="../../how-to/decimals-and-extensions/">Decimals and extensions</a></td>
+</tr>
+<tr>
+<td><code>region.allocator()</code>, <code>region.Savepoint</code></td>
+<td>the fiber region as an allocator</td>
+<td><a href="../../concepts/lifetimes/#the-fiber-region">Lifetimes</a></td>
+</tr>
+<tr>
+<td><code>err.lastError()</code>, <code>err.lastMessage(buf)</code>, <code>err.setBoxError(code, message)</code></td>
+<td>the error of Tarantool</td>
+<td><a href="../errors/">Errors</a></td>
+</tr>
+<tr>
+<td><code>clock.realtime</code>, <code>monotonic</code>, <code>process</code>, <code>thread</code></td>
+<td>the system clocks</td>
+<td><a href="../../how-to/introspection/#clocks">Introspection</a></td>
+</tr>
+<tr>
+<td><code>symresolve.resolve(name)</code></td>
+<td>the address of a symbol that Tarantool does not export</td>
+<td><a href="../../how-to/introspection/#hidden-symbols">Introspection</a></td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>the C API of Tarantool, declared in Zig</td>
+<td><a href="../../concepts/layers/#how-a-module-reaches-tarantool">Modules and layers</a></td>
+</tr>
+<tr>
+<td><code>msgpack</code>, <code>query</code>, <code>update</code></td>
+<td>re-exports, see below</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="tarantool-client">tarantool-client<a class="headerlink" href="#tarantool-client" title="Permanent link">&para;</a></h2>
+<p><code>@import("tarantool-client")</code>, in a module or a program.</p>
+<table>
+<thead>
+<tr>
+<th>Declaration</th>
+<th>Is</th>
+<th>See</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Connection</code></td>
+<td>a connection: <code>connect</code>, <code>close</code>, <code>ping</code>, <code>call</code>, <code>eval</code>, <code>callRaw</code>, <code>evalRaw</code>, <code>space</code>, <code>batch</code>, <code>schema</code>, <code>refreshSchema</code>, <code>watch</code>, <code>unwatch</code>, <code>waitEvent</code>, <code>pollEvent</code>, <code>watchOnce</code>, <code>hasFeature</code>, <code>last_error</code></td>
+<td><a href="../../how-to/network-client/">Network client</a></td>
+</tr>
+<tr>
+<td><code>ConnectOptions</code></td>
+<td><code>address</code>, <code>user</code>, <code>password</code>, <code>timeout</code></td>
+<td><a href="../../how-to/network-client/#connect">Network client</a></td>
+</tr>
+<tr>
+<td><code>Space</code>, <code>Index</code></td>
+<td>requests to a space and to an index, typed and raw</td>
+<td><a href="../../how-to/network-client/#crud">Network client</a></td>
+</tr>
+<tr>
+<td><code>Batch</code>, <code>Handle</code>, <code>ServerErrorInfo</code></td>
+<td>pipelined requests</td>
+<td><a href="../../how-to/network-client/#batches">Network client</a></td>
+</tr>
+<tr>
+<td><code>Schema</code>, <code>decodeRow</code></td>
+<td>the schema of the server; a tuple decoded by field names</td>
+<td><a href="../../how-to/network-client/#the-schema">Network client</a></td>
+</tr>
+<tr>
+<td><code>Stream</code></td>
+<td>an interactive transaction: <code>open</code>, <code>begin</code>, <code>commit</code>, <code>rollback</code>, <code>space</code></td>
+<td><a href="../../how-to/network-client/#transactions">Network client</a></td>
+</tr>
+<tr>
+<td><code>Error</code>, <code>ConnectError</code>, <code>RequestError</code>, <code>ServerError</code></td>
+<td>the errors</td>
+<td><a href="../errors/#the-network-client">Errors</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="tarantool-proto">tarantool-proto<a class="headerlink" href="#tarantool-proto" title="Permanent link">&para;</a></h2>
+<p><code>@import("tarantool-proto")</code>; the SDK re-exports <code>query</code> and <code>update</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Declaration</th>
+<th>Is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query.IteratorType</code></td>
+<td>the iterators: <code>.eq</code>, <code>.req</code>, <code>.all</code>, <code>.lt</code>, <code>.le</code>, <code>.ge</code>, <code>.gt</code>, the bitset and spatial ones</td>
+</tr>
+<tr>
+<td><code>query.SelectOptions</code></td>
+<td><code>iterator</code>, <code>offset</code>, <code>limit</code></td>
+</tr>
+<tr>
+<td><code>update.set</code>, <code>insert</code>, <code>add</code>, <code>sub</code>, <code>band</code>, <code>bor</code>, <code>bxor</code>, <code>delete</code>, <code>splice</code></td>
+<td>the update operations</td>
+</tr>
+<tr>
+<td><code>update.Ops</code></td>
+<td>update operations built at run time</td>
+</tr>
+<tr>
+<td><code>iproto</code>, <code>greeting</code>, <code>auth</code></td>
+<td>the protocol: its constants, the greeting, the <code>chap-sha1</code> scramble</td>
+</tr>
+</tbody>
+</table>
+<h2 id="msgpack">msgpack<a class="headerlink" href="#msgpack" title="Permanent link">&para;</a></h2>
+<p><code>@import("msgpack")</code>, or <code>tarantool.msgpack</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Declaration</th>
+<th>Is</th>
+<th>See</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>encode(w, value)</code>, <code>encodeArray(w, value)</code></td>
+<td>encode a value; any struct as an array</td>
+<td><a href="../../concepts/encoding/">Encoding</a></td>
+</tr>
+<tr>
+<td><code>decode(T, &amp;dec)</code>, <code>decodeArray(T, &amp;dec)</code></td>
+<td>decode into a type; an array into a named struct</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Decoder</code></td>
+<td>a decoder over bytes: <code>init</code>, <code>decodeValue</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Buffer</code></td>
+<td>a growable byte buffer: <code>init</code>, <code>items</code>, <code>deinit</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Value</code>, <code>KV</code>, <code>freeValue</code></td>
+<td>a dynamic value</td>
+<td><a href="../../concepts/encoding/#dynamic-values">Encoding</a></td>
+</tr>
+<tr>
+<td><code>Bin</code></td>
+<td>binary data, as opposed to a string</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ext.Uuid</code>, <code>Datetime</code>, <code>Interval</code>, <code>Decimal</code>, <code>Ext</code> and their <code>parse*</code></td>
+<td>the extension types of Tarantool</td>
+<td><a href="../../how-to/decimals-and-extensions/#uuids-datetimes-intervals">Decimals and extensions</a></td>
+</tr>
+<tr>
+<td><code>DecodeError</code></td>
+<td>the errors of decoding</td>
+<td><a href="../errors/#decoding">Errors</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="../build/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Build reference">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Build reference
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../api/" class="md-footer__link md-footer__link--next" aria-label="Вперед: API (из исходников)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                API (из исходников)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.code.copy", "navigation.footer", "navigation.sections", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>
