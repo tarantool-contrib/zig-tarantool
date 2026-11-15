@@ -43,6 +43,12 @@
         <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/first-module/"/>
     </url>
     <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/first-modules-with-tt/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/first-modules-with-tt/"/>
+    </url>
+    <url>
         <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/get-started/install/</loc>
         <lastmod>2026-11-15</lastmod>
         <changefreq>daily</changefreq>
@@ -113,6 +119,12 @@
         <lastmod>2026-11-15</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/triggers/"/>
+    </url>
+    <url>
+        <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/using-with-tt/</loc>
+        <lastmod>2026-11-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://tarantool-contrib.github.io/zig-tarantool/ru/master/how-to/using-with-tt/"/>
     </url>
     <url>
         <loc>https://tarantool-contrib.github.io/zig-tarantool/ru/master/project/known-issues/</loc>

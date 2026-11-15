@@ -466,6 +466,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/first-modules-with-tt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first modules with tt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -991,6 +1019,34 @@
     
   
     Introspection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/using-with-tt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using with tt
   
 
     
@@ -1854,10 +1910,19 @@ GitHub Pages serves:</p>
 </tbody>
 </table>
 <p>A version is <code>master</code>, published on every push to it, or a release: the tag
-<code>v1.2.0</code> publishes <code>1.2.0</code>, aliased <code>latest</code>, which becomes the default. Before
-the first release, the default is <code>master</code>.</p>
+<code>v1.2.0</code> publishes <code>1.2.0</code>. The highest release is aliased <code>latest</code>, which is
+the default; before the first release, the default is <code>master</code>. A release on
+an older line, <code>v1.1.5</code> after <code>v1.2.0</code>, does not take <code>latest</code>.</p>
+<p>The documentation of a release is fixed on a branch <code>doc/&lt;tag&gt;</code>, by
+convention: branch <code>doc/v1.2.0</code> off the tag <code>v1.2.0</code>, commit the fix there and
+push it. A push to <code>doc/v1.2.0</code> publishes <code>1.2.0</code> again, keeping its aliases.
+Merge the fix to <code>master</code> too, so that the next release has it.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>doc/v1.2.0<span class="w"> </span>v1.2.0
+<span class="c1"># fix doc/, commit</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>doc/v1.2.0
+</code></pre></div>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>ci/docs.py<span class="w"> </span>deploy<span class="w"> </span>master<span class="w">                </span><span class="c1"># publish to the local gh-pages</span>
-python3<span class="w"> </span>ci/docs.py<span class="w"> </span>deploy<span class="w"> </span>v1.2.0<span class="w"> </span>--latest<span class="w"> </span>--push
+python3<span class="w"> </span>ci/docs.py<span class="w"> </span>deploy<span class="w"> </span>v1.2.0<span class="w"> </span>--push<span class="w">         </span><span class="c1"># what CI does for a tag</span>
 python3<span class="w"> </span>ci/docs.py<span class="w"> </span>build<span class="w">                        </span><span class="c1"># one version into site/, as CI checks it</span>
 </code></pre></div>
 <p><a href="https://github.com/jimporter/mike">mike</a> publishes the guides: each language
